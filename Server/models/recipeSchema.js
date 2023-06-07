@@ -9,7 +9,7 @@ const recipeSchema = new Schema({
     id: Number,
     title: String,
     image: String,
-    tags: [String],
+    cuisines: [String],
     sourceUrl: String,
     user_id: {
         type: String,

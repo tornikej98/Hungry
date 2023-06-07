@@ -1,12 +1,13 @@
 const router = require('express').Router();
-const { getAllRecipes, addRecipe, deleteRecipe } = require('../controllers/recipeControllers')
+const { getAllRecipes, addRecipe, removeRecipe } = require('../controllers/recipeControllers')
+const authMiddleware = require('../middleware/auth')
 
 
 
 router
-    .get('/', getAllRecipes)
-    .post('/', addRecipe)
-    .delete('/:id', deleteRecipe)
+    .get('/', authMiddleware, getAllRecipes)
+    .post('/', authMiddleware, addRecipe)
+    .delete('/:id', authMiddleware, removeRecipe)
 // .get('/favoriteRecipes', eventController.getAllRecipes)
 // .post('/favoriteRecipes', eventController.getAllRecipes)
 

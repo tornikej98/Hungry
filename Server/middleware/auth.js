@@ -11,7 +11,7 @@ const authMiddleware = async (req, res, next) => {
     const token = authorization.split(' ')[1]
 
     try {
-        const { _id } = jwt.verify(token, process.env.SECRET_KEY)
+        const { _id } = jwt.verify(token, SECRET_KEY)
         req.user = await User.findOne({ _id }).select('_id')
         next()
     } catch (err) {
@@ -19,3 +19,6 @@ const authMiddleware = async (req, res, next) => {
         res.sendStatus(401)
     }
 }
+
+
+module.exports = authMiddleware
