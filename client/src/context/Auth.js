@@ -13,7 +13,7 @@ export const authReducer = (state, action) => {
     }
 }
 
-export const AuthCtxProvider = ({ ctx }) => {
+export const AuthCtxProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
         user: null
     })
@@ -25,11 +25,13 @@ export const AuthCtxProvider = ({ ctx }) => {
             dispatch({ type: 'LOGIN', payload: user })
         }
     }, [])
+
+
+
     return (
         <AuthContext.Provider value={{ ...state, dispatch }}>
-            {ctx}
+            {children}
         </AuthContext.Provider>
     )
+
 }
-
-

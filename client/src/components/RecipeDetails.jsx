@@ -11,7 +11,7 @@ function RecipeDetails({ recipe }) {
         <div>
             <h1>recipe details</h1>
 
-            <h1>{recipe.title}</h1>
+            <h3>{recipe.title}</h3>
         </div>
     )
 }

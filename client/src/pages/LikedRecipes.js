@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+
 // import { fetchLikedRecipes } from '../utils/ApiService'
 import { useRecipeCtx } from '../hooks/useRecipeCtx'
 
@@ -9,7 +10,7 @@ function LikedRecipes() {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await fetch('/recipes')
+                const response = await fetch('http://127.0.0.1:5000/recipes/')
                 const josnResponse = await response.json()
 
                 if (response.ok) {

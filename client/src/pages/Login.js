@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { LoginUser } from "../hooks/Login";
+import { useAuthCtx } from '../hooks/useAuthCtx';
+
+
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setpassword] = useState('')
     const { login, error, loading } = LoginUser()
 
+    // const user = useAuthCtx()
+    // console.log(user)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -32,6 +37,7 @@ const Login = () => {
                 {error && <div className="error">{error}</div>}
             </form>
         </div>
+
 
     )
 }
