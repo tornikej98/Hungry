@@ -11,6 +11,7 @@ import { AuthCtxProvider } from './context/Auth';
 import { RecipeCtxProvider } from './context/RecipeContext';
 
 import { useAuthCtx } from './hooks/useAuthCtx';
+import MainPage from './pages/MainPage';
 
 
 
@@ -22,13 +23,12 @@ function App() {
     // <AuthCtxProvider>
     //   <RecipeCtxProvider>
     <div className="App">
-      <h1>App</h1>
       <BrowserRouter>
         <div className='pages'>
           <Routes>
             <Route
               path='/'
-              element={user ? <LikedRecipes /> : <Navigate to='/login' />}
+              element={user ? <MainPage /> : <Navigate to='/login' />}
             />
             <Route
               path='/login'
@@ -41,6 +41,11 @@ function App() {
             <Route
               path='/logout'
               element={user ? <Login /> : <Navigate to='/login' />}
+            />
+
+            <Route
+              path='/likedRecipes'
+              element={user ? <LikedRecipes /> : <Navigate to='/login' />}
             />
           </Routes>
 

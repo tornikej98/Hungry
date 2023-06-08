@@ -3,7 +3,7 @@ import { useRecipeCtx } from "./useRecipeCtx";
 
 export const LogoutUser = () => {
     const { dispatch } = useAuthCtx()
-    const { dispatch: dispatchRecipes } = useRecipeCtx
+    const { dispatch: dispatchRecipes } = useRecipeCtx()
 
     const logout = () => {
         localStorage.removeItem('user')

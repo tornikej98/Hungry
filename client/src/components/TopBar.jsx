@@ -9,7 +9,7 @@ function TopBar() {
 
 
     const handleClick = () => {
-        logout
+        logout()
     }
 
     return (
