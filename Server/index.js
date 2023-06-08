@@ -8,8 +8,8 @@ const userRouter = require('./routers/userRouter')
 app.use(cors())
 app.use(Express.json())
 
-app.use(userRouter)
-app.use(recipeRouter)
+app.use('/user', userRouter)
+app.use('/recipes', recipeRouter)
 
 
 

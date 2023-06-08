@@ -1,5 +1,5 @@
 const dbLikedURL = "http://127.0.0.1:5000/recipes"
-const dbFavoriteURL = "http://127.0.0.1:5000/favoriteRecipes"
+// const userLink = "http://127.0.0.1:5000/user"
 
 
 
@@ -24,14 +24,24 @@ export const addLikedRecipe = (dish) => {
 }
 
 
-export const fetchFavoriteRecipes = async () => {
-    try {
-        const response = await fetch(dbFavoriteURL)
-        return response.json()
-    } catch (error) {
-        console.log(error)
-    }
-}
+// export const fetchUserData = async () => {
+//     try {
+//         const response = await fetch(userLink)
+//         return response.json()
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
+
+// export const fetchFavoriteRecipes = async () => {
+//     try {
+//         const response = await fetch(dbFavoriteURL)
+//         return response.json()
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 export const addFavoriteRecipe = (dish) => {
     fetch(dbFavoriteURL, {
