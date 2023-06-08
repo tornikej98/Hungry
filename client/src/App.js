@@ -15,7 +15,7 @@ import { useAuthCtx } from './hooks/useAuthCtx';
 
 
 function App() {
-  const user = useAuthCtx()
+  const { user } = useAuthCtx()
   console.log(user)
 
   return (
@@ -37,6 +37,10 @@ function App() {
             <Route
               path='/register'
               element={!user ? <Register /> : <Navigate to='/' />}
+            />
+            <Route
+              path='/logout'
+              element={user ? <Login /> : <Navigate to='/login' />}
             />
           </Routes>
 

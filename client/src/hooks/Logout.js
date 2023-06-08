@@ -1,7 +1,7 @@
 import { useAuthCtx } from "./useAuthCtx";
 import { useRecipeCtx } from "./useRecipeCtx";
 
-export const logoutUser = () => {
+export const LogoutUser = () => {
     const { dispatch } = useAuthCtx()
     const { dispatch: dispatchRecipes } = useRecipeCtx
 
