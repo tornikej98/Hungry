@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-
-import TopBar from "../components/TopBar";
 import { useAuthCtx } from '../hooks/useAuthCtx';
+import TopBar from "../components/TopBar"
+import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import React, { useState } from 'react'
+import('./mainpage.css')
+
+
 
 
 //make api call on page startup
@@ -21,39 +23,39 @@ function MainPage() {
 
     const fetchOnClick = async () => {
 
-        try {
-            const response = await fetch('https://api.spoonacular.com/recipes/random?number=1&tags=greek,main+course&apiKey=6d13482078f04a64b617d5b8bcb7628b', {
+        // try {
+        //     const response = await fetch('https://api.spoonacular.com/recipes/random?number=1&tags=greek,main+course&apiKey=6d13482078f04a64b617d5b8bcb7628b', {
 
-            })
-            const jsonResponse = await response.json()
+        //     })
+        //     const jsonResponse = await response.json()
 
-            if (response.ok) {
-                setRandomRecipe(jsonResponse)
-            }
-        } catch (error) {
-            console.log(error)
-        }
+        //     if (response.ok) {
+        //         setRandomRecipe(jsonResponse)
+        //     }
+        // } catch (error) {
+        //     console.log(error)
+        // }
     }
 
 
     useEffect(() => {
 
-        const fetchOnStartup = async () => {
-            try {
-                const response = await fetch('https://api.spoonacular.com/recipes/random?number=1&tags=greek,main+course&apiKey=6d13482078f04a64b617d5b8bcb7628b', {
+        // const fetchOnStartup = async () => {
+        //     try {
+        //         const response = await fetch('https://api.spoonacular.com/recipes/random?number=1&tags=greek,main+course&apiKey=6d13482078f04a64b617d5b8bcb7628b', {
 
-                })
-                const jsonResponse = await response.json()
+        //         })
+        //         const jsonResponse = await response.json()
 
-                if (response.ok) {
-                    setRandomRecipe(jsonResponse)
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        }
+        //         if (response.ok) {
+        //             setRandomRecipe(jsonResponse)
+        //         }
+        //     } catch (error) {
+        //         console.log(error)
+        //     }
+        // }
 
-        fetchOnStartup()
+        // fetchOnStartup()
     }, [])
     console.log(randomRecipe.recipes)
     return (
@@ -66,7 +68,7 @@ function MainPage() {
 
             <div className='recipe-selector'>
                 <div className='picture'>
-                    <img src={randomRecipe.recipes[0].image} />
+                    {/* <img src={randomRecipe.recipes[0].image} /> */}
 
                 </div>
                 <div className='buttons'>

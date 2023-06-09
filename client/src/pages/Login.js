@@ -1,6 +1,13 @@
+
+import { TfiEmail } from 'react-icons/tfi'
+import { RiLockPasswordLine } from 'react-icons/ri'
+
 import { useState } from "react";
 import { LoginUser } from "../hooks/Login";
 import { useAuthCtx } from '../hooks/useAuthCtx';
+
+import('./login.css')
+
 
 
 
@@ -21,19 +28,28 @@ const Login = () => {
     return (
 
         <div className="login-page">
-            <h1>this is login page</h1>
+            <h4>this is the login page</h4>
+            <h1 className="title">Hungry</h1>
             <form className="login" onSubmit={handleSubmit}>
-                <h1>Log-in</h1>
 
-                <label>Email:</label>
-                <input type="email" onChange={(e) => setEmail(e.target.value)} value={email}
-                />
 
-                <label>Password:</label>
-                <input type="password" onChange={(e) => setpassword(e.target.value)} value={password}
-                />
+                <div className='input-field'>
+                    <TfiEmail />
+                    <input type="email" onChange={(e) => setEmail(e.target.value)} value={email}
+                    />
+                </div>
 
-                <button disabled={loading}>Log in</button>
+                <div className='input-field'>
+                    <RiLockPasswordLine />
+                    <input type="password" onChange={(e) => setpassword(e.target.value)} value={password}
+                    />
+                </div>
+
+
+                <div className='btn'>
+                    <button disabled={loading}>Log in</button>
+                </div>
+
                 {error && <div className="error">{error}</div>}
             </form>
         </div>
