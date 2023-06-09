@@ -12,18 +12,18 @@ import { RecipeCtxProvider } from './context/RecipeContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-  <React.StrictMode>
+  // <React.StrictMode>
 
-    <AuthCtxProvider>
-      <RecipeCtxProvider>
-        <App />
-      </RecipeCtxProvider>
-    </AuthCtxProvider>
-
-
+  <AuthCtxProvider>
+    <RecipeCtxProvider>
+      <App />
+    </RecipeCtxProvider>
+  </AuthCtxProvider>
 
 
-  </React.StrictMode>
+
+
+  // </React.StrictMode>
 );
 
 // If you sant to start measuring performance in your app, pass a function

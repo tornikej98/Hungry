@@ -28,24 +28,24 @@ function App() {
           <Routes>
             <Route
               path='/'
-              element={user ? <MainPage /> : <Navigate to='/login' />}
+              element={{ user } ? <MainPage /> : <Navigate to='/login' />}
             />
             <Route
               path='/login'
-              element={!user ? <Login /> : <Navigate to='/' />}
+              element={!{ user } ? <Login /> : <Navigate to='/' />}
             />
             <Route
               path='/register'
-              element={!user ? <Register /> : <Navigate to='/' />}
+              element={!{ user } ? <Register /> : <Navigate to='/login' />}
             />
             <Route
               path='/logout'
-              element={user ? <Login /> : <Navigate to='/login' />}
+              element={{ user } ? <Login /> : <Navigate to='/login' />}
             />
 
             <Route
               path='/likedRecipes'
-              element={user ? <LikedRecipes /> : <Navigate to='/login' />}
+              element={{ user } ? <LikedRecipes /> : <Navigate to='/login' />}
             />
           </Routes>
 

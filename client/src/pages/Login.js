@@ -5,6 +5,7 @@ import { RiLockPasswordLine } from 'react-icons/ri'
 import { useState } from "react";
 import { LoginUser } from "../hooks/Login";
 import { useAuthCtx } from '../hooks/useAuthCtx';
+import { Link } from 'react-router-dom';
 
 import('./login.css')
 
@@ -47,7 +48,9 @@ const Login = () => {
 
 
                 <div className='btn'>
-                    <button disabled={loading}>Log in</button>
+                    <Link to='/'>
+                        <button disabled={loading}>Log in</button>
+                    </Link>
                 </div>
 
                 {error && <div className="error">{error}</div>}

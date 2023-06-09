@@ -43,13 +43,13 @@ export const addLikedRecipe = (dish) => {
 //     }
 // }
 
-export const addFavoriteRecipe = (dish) => {
-    fetch(dbFavoriteURL, {
-        method: 'POST',
-        mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dish)
-    })
-        .then((res) => res.json())
-        .catch((err) => console.log(err))
-}
+// export const addFavoriteRecipe = (dish) => {
+//     fetch(dbFavoriteURL, {
+//         method: 'POST',
+//         mode: 'cors',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(dish)
+//     })
+//         .then((res) => res.json())
+//         .catch((err) => console.log(err))
+// }

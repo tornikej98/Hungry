@@ -1,0 +1,37 @@
+.top-bar {
+    display: flex;
+    margin-bottom: 5vh;
+}
+
+.top-bar h4 {
+    display: flex;
+    align-items: center;
+
+}
+
+.recipe-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recipe {
+    display: flex;
+    background-color: rgb(243, 165, 165);
+    width: 90vw;
+    border-style: solid;
+    border-width: 1vw;
+    margin-bottom: 5vh;
+}
+
+.recipe-image {
+    display: flex;
+    width: 25vw;
+    height: 10vh;
+}
+
+.recipe-image img {
+    border-radius: 10vw;
+    max-width: 100%;
+    max-height: 100%;
+}

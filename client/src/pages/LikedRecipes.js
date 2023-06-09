@@ -1,8 +1,12 @@
 import { useEffect } from 'react'
-
+import { Link } from 'react-router-dom'
 import { useRecipeCtx } from '../hooks/useRecipeCtx'
 import TopBar from "../components/TopBar";
 import { useAuthCtx } from '../hooks/useAuthCtx';
+import { BiArrowBack } from 'react-icons/bi'
+import { IconContext } from "react-icons";
+
+import('./likedrecipes.css')
 
 function LikedRecipes() {
     const { recipes, dispatch } = useRecipeCtx()
@@ -34,14 +38,35 @@ function LikedRecipes() {
     return (
 
         <div className='likedRecipePage'>
-            <div className='likedRecipes'>
-                <h1>LikedRecipes</h1>
-                {recipes && recipes.map((recipe) => (
-                    <p key={recipe.id}>{recipe.title}</p>
-                ))}
+            <div className='top-bar'>
+                <Link to='/'>
+                    <IconContext.Provider value={{ size: "2em", color: 'black' }}>
+                        <BiArrowBack />
+                    </IconContext.Provider>
+                </Link>
+
+                <h4>LikedRecipes</h4>
+
 
             </div>
-            <TopBar />
+            <div className='recipe-list'>
+
+
+                {recipes && recipes.map((recipe) => (
+
+                    <div className='recipe'>
+                        <div className='recipe-image'>
+                            <img key={recipe.id} src={recipe.image} />
+                        </div>
+
+                        <div className='recipe-info'>
+                            <p key={recipe.id}>{recipe.title}</p>
+                        </div>
+
+                    </div>
+
+                ))}
+            </div>
         </div>
     )
 }
