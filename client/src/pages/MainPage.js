@@ -3,6 +3,10 @@ import TopBar from "../components/TopBar"
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import React, { useState } from 'react'
+import { TbToolsKitchen2 } from 'react-icons/tb'
+import { TbTrash } from 'react-icons/tb'
+import { IconContext } from "react-icons";
+
 import('./mainpage.css')
 
 
@@ -66,20 +70,40 @@ function MainPage() {
                 <h3>LikedRecipes</h3>
             </Link>
 
+            <div className='dropdown-menu'>
+                <h4>Settings</h4>
+                <ul>
+                    <li>item 1</li>
+                    <li>item 2</li>
+                    <li>item 3</li>
+
+                </ul>
+            </div>
             <div className='recipe-selector'>
                 <div className='picture'>
                     {/* <img src={randomRecipe.recipes[0].image} /> */}
 
                 </div>
-                <div className='buttons'>
-                    <button onClick={() => fetchOnClick()}>DISLIKE</button>
-                    <button>LIKE</button>
+                <IconContext.Provider value={{ size: "2em" }}>
+
+                    <div className='buttons'>
+                        <button className='dislike' onClick={() => fetchOnClick()}><TbTrash className='icon' /></button>
+                        <button className='info'>?</button>
+                        <button className='like'><TbToolsKitchen2 className='icon' /></button>
+                    </div>
+                </IconContext.Provider>
+                <div className='recipe-name'>
+                    <p>dish name</p>
                 </div>
 
             </div>
 
         </div>
     )
+
+
 }
+
+
 
 export default MainPage
