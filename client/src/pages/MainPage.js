@@ -94,7 +94,7 @@ function MainPage() {
         console.log(id, title, image, cuisines, sourceUrl)
         console.log(JSON.stringify({ id, title, image, cuisines, sourceUrl }))
 
-        fetchOnClick()
+        // fetchOnClick()
 
     }
 
@@ -102,43 +102,43 @@ function MainPage() {
 
     const fetchOnClick = async () => {
 
-        try {
-            const response = await fetch(api, {
+        // try {
+        //     const response = await fetch(api, {
 
-            })
-            const jsonResponse = await response.json()
+        //     })
+        //     const jsonResponse = await response.json()
 
-            if (response.ok) {
-                setRandomRecipe(jsonResponse)
-            }
-            console.log(randomRecipe.recipes)
-        } catch (error) {
-            console.log(error)
-        }
+        //     if (response.ok) {
+        //         setRandomRecipe(jsonResponse)
+        //     }
+        //     console.log(randomRecipe.recipes)
+        // } catch (error) {
+        //     console.log(error)
+        // }
     }
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const fetchOnStartup = async () => {
-            try {
-                const response = await fetch(api, {
+    //     const fetchOnStartup = async () => {
+    //         try {
+    //             const response = await fetch(api, {
 
-                })
-                const jsonResponse = await response.json()
+    //             })
+    //             const jsonResponse = await response.json()
 
-                if (response.ok) {
-                    setRandomRecipe(jsonResponse)
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        }
+    //             if (response.ok) {
+    //                 setRandomRecipe(jsonResponse)
+    //             }
+    //         } catch (error) {
+    //             console.log(error)
+    //         }
+    //     }
 
-        fetchOnStartup()
+    //     fetchOnStartup()
 
-        console.log('effect')
-    }, [])
+    //     console.log('effect')
+    // }, [])
 
 
     // console.log(randomRecipe.recipes)
@@ -161,7 +161,7 @@ function MainPage() {
                 <h3>Hungry</h3>
 
                 <Link to='/likedRecipes'>
-                    <IconContext.Provider value={{ color: 'red', size: "2em" }}>
+                    <IconContext.Provider value={{ color: '#fe3c72', size: "2em" }}>
                         < BsFillHeartFill />
                     </IconContext.Provider>
                 </Link>
@@ -197,6 +197,16 @@ function MainPage() {
 
                 />
             </div>
+
+            {dropDown && <div className='flex flex-col dropdown-menu'>
+                <h4>Log out?</h4>
+                <button onClick={() => { setDropDown((prev) => !prev) }}>NO</button>
+                <Link to='/logout'>
+                    <button >Yes</button>
+                </Link>
+
+
+            </div>}
 
             {/* {
                 dropDown && <div className='flex flex-col dropdown-menu'>
@@ -264,7 +274,9 @@ function MainPage() {
 
             <div className='recipe-selector'>
                 <div className='picture'>
-                    <img src={randomRecipe ? randomRecipe.recipes[0].image : 'no image'} />
+
+                    {/* {randomRecipe.recipes[0].image ? <img src={randomRecipe.recipes[0].image} /> : 'no image'} */}
+                    {/* <img src={randomRecipe.recipes[0].image} /> */}
 
                 </div>
                 <IconContext.Provider value={{ size: "2em" }}>
@@ -276,7 +288,7 @@ function MainPage() {
                     </div>
                 </IconContext.Provider>
                 <div className='recipe-name'>
-                    <p>{randomRecipe && randomRecipe.recipes[0].title}</p>
+                    {/* <p>{randomRecipe && randomRecipe.recipes[0].title}</p> */}
                 </div>
 
             </div>

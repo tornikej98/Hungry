@@ -32,6 +32,7 @@ function LikedRecipes() {
             }
         }
         fetchLikedRecipes()
+        console.log(user.accessToken)
     }, [])
 
 
@@ -54,7 +55,7 @@ function LikedRecipes() {
 
                 {recipes && recipes.map((recipe) => (
 
-                    <div key={recipe.id} className='recipe'>
+                    <div key={recipe._id} className='recipe'>
                         <div className='recipe-image'>
                             <img src={recipe.image} />
                         </div>

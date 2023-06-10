@@ -1,6 +1,10 @@
+
+import { TfiEmail } from 'react-icons/tfi'
+import { RiLockPasswordLine } from 'react-icons/ri'
 import { useState } from "react";
 import { RegisterUser } from "../hooks/Register";
-
+import { Link } from 'react-router-dom';
+import('./register.css')
 
 const Register = () => {
     const [email, setEmail] = useState('')
@@ -16,20 +20,33 @@ const Register = () => {
     return (
 
         <div className="register-page">
-            <h1>this is register page</h1>
+            <h4>this is register page</h4>
+            <h1 className="title">Hungry</h1>
+
             <form className="register-form" onSubmit={handleSubmit}>
                 <h1>Register</h1>
 
-                <label>Email:</label>
-                <input type="email" onChange={(e) => setEmail(e.target.value)} value={email}
-                />
+                <div className="register-input">
+                    <TfiEmail />
+                    <input type="email" onChange={(e) => setEmail(e.target.value)} value={email}
+                    />
+                </div>
 
-                <label>Password:</label>
-                <input type="password" onChange={(e) => setpassword(e.target.value)} value={password}
-                />
+                <div className="register-input">
+                    <RiLockPasswordLine />
+                    <input type="password" onChange={(e) => setpassword(e.target.value)} value={password}
+                    />
+                </div>
 
-                <button disabled={loading}>Register Account</button>
-                {error && <div className="error">{error}</div>}
+                <div className='register-btn'>
+                    <button disabled={loading}>Register Account</button>
+                    {error && <div className="error">{error}</div>}
+                    <Link to='/login'>
+                        <button disabled={loading}>Log in</button>
+                    </Link>
+
+                </div>
+
             </form>
         </div>
     )

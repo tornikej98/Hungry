@@ -4,6 +4,7 @@ import { RiLockPasswordLine } from 'react-icons/ri'
 
 import { useState } from "react";
 import { LoginUser } from "../hooks/Login";
+import { IconContext } from "react-icons";
 import { useAuthCtx } from '../hooks/useAuthCtx';
 import { Link } from 'react-router-dom';
 
@@ -31,25 +32,35 @@ const Login = () => {
         <div className="login-page">
             <h4>this is the login page</h4>
             <h1 className="title">Hungry</h1>
+
             <form className="login" onSubmit={handleSubmit}>
 
 
                 <div className='input-field'>
-                    <TfiEmail />
-                    <input type="email" onChange={(e) => setEmail(e.target.value)} value={email}
+                    <IconContext.Provider value={{ color: 'white' }}>
+                        <TfiEmail className='login-icon' />
+                    </IconContext.Provider>
+                    <input type="email" placeholder='Email...' onChange={(e) => setEmail(e.target.value)} value={email}
                     />
                 </div>
 
                 <div className='input-field'>
-                    <RiLockPasswordLine />
-                    <input type="password" onChange={(e) => setpassword(e.target.value)} value={password}
+                    <IconContext.Provider value={{ color: 'white' }}>
+                        <RiLockPasswordLine className='login-icon' />
+                    </IconContext.Provider>
+                    <input type="password" placeholder='Password...' onChange={(e) => setpassword(e.target.value)} value={password}
                     />
                 </div>
 
 
-                <div className='btn'>
+                <div className='log-btn'>
                     <Link to='/'>
                         <button disabled={loading}>Log in</button>
+                    </Link>
+                </div>
+                <div className='reg-btn'>
+                    <Link to='/register'>
+                        <button disabled={loading}>Register</button>
                     </Link>
                 </div>
 
