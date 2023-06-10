@@ -99,3 +99,34 @@
     border-style: none;
     border-radius: 1.5em;
 }
+
+.dropdown-container {
+    display: flex;
+    justify-content: space-around
+}
+
+.dropdown {
+    width: 30vw;
+}
+
+.dropdown-heading-value {
+    display: none;
+}
+
+
+
+.rmsc {
+    --rmsc-main: #4285f4;
+    --rmsc-hover: #ff0000;
+    --rmsc-selected: #eefa4c;
+    --rmsc-border: rgb(255, 208, 0);
+    --rmsc-gray: rgb(0, 0, 0);
+    --rmsc-bg: #c5c4c4;
+    --rmsc-p: 10px;
+    --rmsc-radius: 1rem;
+    --rmsc-h: 38px;
+}
+
+.rmsc .dropdown-heading {
+    justify-content: space-between;
+}

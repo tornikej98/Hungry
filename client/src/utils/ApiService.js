@@ -1,3 +1,4 @@
+
 const dbLikedURL = "http://127.0.0.1:5000/recipes"
 // const userLink = "http://127.0.0.1:5000/user"
 
@@ -12,11 +13,17 @@ export const fetchLikedRecipes = async () => {
     }
 }
 
-export const addLikedRecipe = (dish) => {
+export const addLikedRecipe = (dish, theUser) => {
     fetch(dbLikedURL, {
         method: 'POST',
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${theUser.accessToken} `
+        },
+
+
+
         body: JSON.stringify(dish)
     })
         .then((res) => res.json())

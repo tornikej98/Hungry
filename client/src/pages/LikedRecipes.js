@@ -54,13 +54,13 @@ function LikedRecipes() {
 
                 {recipes && recipes.map((recipe) => (
 
-                    <div className='recipe'>
+                    <div key={recipe.id} className='recipe'>
                         <div className='recipe-image'>
-                            <img key={recipe.id} src={recipe.image} />
+                            <img src={recipe.image} />
                         </div>
 
                         <div className='recipe-info'>
-                            <p key={recipe.id}>{recipe.title}</p>
+                            <p >{recipe.title}</p>
                         </div>
 
                     </div>

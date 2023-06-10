@@ -30,7 +30,7 @@ exports.removeRecipe = async (req, res) => {
     const recipe = await Recipe.findOneAndDelete({ _id: id })
 
     if (!recipe) {
-        return res.status(400).json({ error: 'recipe does not exist' })
+        return res.status(400).json({ error: 'recipe does not exist' }).save()
     }
 
     res.status(200).json(recipe)

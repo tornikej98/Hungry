@@ -1,9 +1,9 @@
+import { Link } from 'react-router-dom'
 import { useAuthCtx } from '../hooks/useAuthCtx';
 import TopBar from "../components/TopBar"
-import { Link } from 'react-router-dom'
+
 import { useEffect } from 'react'
 import React, { useState } from 'react'
-
 import { addLikedRecipe } from '../utils/ApiService'
 
 import { TbToolsKitchen2, TbTrash, TbMeatOff } from 'react-icons/tb'
@@ -13,10 +13,38 @@ import { BiLogOut } from 'react-icons/bi'
 import { BsFillHeartFill } from 'react-icons/bs'
 import { IconContext } from "react-icons";
 import { US, CN, GR, IT, IN, JP, MX, TH, VN } from 'country-flag-icons/react/3x2'
+import { MultiSelect } from "react-multi-select-component"
 
 import('./mainpage.css')
 
 
+const cuisine = [
+
+    { label: <US className='country-flag' />, value: "american" },
+    { label: <CN className='country-flag' />, value: "chinese" },
+    { label: <GR className='country-flag' />, value: "greek" },
+    { label: <IT className='country-flag' />, value: "italian" },
+    { label: <IN className='country-flag' />, value: "indian" },
+    { label: <JP className='country-flag' />, value: "japanese" },
+    { label: <MX className='country-flag' />, value: "mexican" },
+    { label: <TH className='country-flag' />, value: "thai" },
+    { label: <VN className='country-flag' />, value: "vietnamese" }
+]
+
+const mealType = [
+    { label: 'Breakfast', value: "breakfast" },
+    { label: 'Apetizer', value: "apetizer" },
+    { label: 'Main', value: "main+course" },
+    { label: "Dessert", value: "dessert" },
+
+
+]
+
+const diet = [
+    { label: <TbMeatOff />, value: "vegetarian" },
+    { label: <LuVegan />, value: "vegan" },
+    { label: <LuWheatOff />, value: "gluten+free" },
+]
 
 
 //make api call on page startup
@@ -27,17 +55,55 @@ import('./mainpage.css')
 
 
 function MainPage() {
-
+    const { user } = useAuthCtx()
     const [randomRecipe, setRandomRecipe] = useState('')
     const [dropDown, setDropDown] = useState(false)
+    const [likedRecipe, setLikedRecipe] = useState('')
+    const [selected, setSelected] = useState([])
 
+
+
+    const arrayOfTags = []
+
+
+    selected.map((sel) => {
+        arrayOfTags.push(sel.value)
+    })
+
+    const stringTags = arrayOfTags.toString()
+    // let tagsForAPI = selected.reduce((result, tag) => {
+    //     return `${result}${tag.value}`, ''
+    // })
+
+
+    const api = `https://api.spoonacular.com/recipes/random?number=1&tags=${stringTags}&apiKey=e0be19ede420492499f458b771674281`
+
+
+
+
+    const handleLike = () => {
+
+
+
+        const { id, title, image, cuisines, sourceUrl, } = randomRecipe.recipes[0]
+        addLikedRecipe(({ id, title, image, cuisines, sourceUrl }), user)
+
+
+        console.log(stringTags)
+        console.log(randomRecipe.recipes[0])
+        console.log(id, title, image, cuisines, sourceUrl)
+        console.log(JSON.stringify({ id, title, image, cuisines, sourceUrl }))
+
+        fetchOnClick()
+
+    }
 
 
 
     const fetchOnClick = async () => {
 
         try {
-            const response = await fetch('https://api.spoonacular.com/recipes/random?number=1&tags=greek,main+course&apiKey=e0be19ede420492499f458b771674281', {
+            const response = await fetch(api, {
 
             })
             const jsonResponse = await response.json()
@@ -45,38 +111,43 @@ function MainPage() {
             if (response.ok) {
                 setRandomRecipe(jsonResponse)
             }
-            console.log(response)
+            console.log(randomRecipe.recipes)
         } catch (error) {
             console.log(error)
         }
     }
 
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const fetchOnStartup = async () => {
-    //         try {
-    //             const response = await fetch('https://api.spoonacular.com/recipes/random?number=1&tags=greek,main+course&apiKey=e0be19ede420492499f458b771674281', {
+        const fetchOnStartup = async () => {
+            try {
+                const response = await fetch(api, {
 
-    //             })
-    //             const jsonResponse = await response.json()
+                })
+                const jsonResponse = await response.json()
 
-    //             if (response.ok) {
-    //                 setRandomRecipe(jsonResponse)
-    //             }
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
+                if (response.ok) {
+                    setRandomRecipe(jsonResponse)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
 
-    //     fetchOnStartup()
+        fetchOnStartup()
 
-    //     console.log('effect')
-    // }, [])
+        console.log('effect')
+    }, [])
+
+
     // console.log(randomRecipe.recipes)
-    console.log(dropDown)
     // console.log(randomRecipe)
 
+
+    //use form for input 
+    //on change update state variable
+    //
 
     return (
 
@@ -84,7 +155,7 @@ function MainPage() {
         <div className='main-page'>
             <div className='top-bar'>
                 <IconContext.Provider value={{ size: "2em" }}>
-                    <FiSettings className='icon' onClick={() => { setDropDown((prev) => !prev) }} />
+                    <BiLogOut className='icon' onClick={() => { setDropDown((prev) => !prev) }} />
                 </IconContext.Provider>
 
                 <h3>Hungry</h3>
@@ -96,12 +167,43 @@ function MainPage() {
                 </Link>
 
             </div>
-            {
+
+
+
+            <div className='dropdown-container'>
+                <MultiSelect className='dropdown'
+                    options={cuisine}
+                    value={selected}
+                    onChange={setSelected}
+                    hasSelectAll={false}
+                    disableSearch={true}
+                    labelledBy="Cuisine"
+                />
+                <MultiSelect className='dropdown'
+                    options={mealType}
+                    value={selected}
+                    onChange={setSelected}
+                    hasSelectAll={false}
+                    disableSearch={true}
+                    labelledBy="Cuisine"
+                />
+                <MultiSelect className='dropdown'
+                    options={diet}
+                    value={selected}
+                    onChange={setSelected}
+                    hasSelectAll={false}
+                    disableSearch={true}
+                    labelledBy="Cuisine"
+
+                />
+            </div>
+
+            {/* {
                 dropDown && <div className='flex flex-col dropdown-menu'>
-                    <div className='flex flex-col gap-4'>
+                    <form className='flex flex-col gap-4'>
                         <h3>Cuisine</h3>
                         <label for="USA"> <US className='country-flag' /></label>
-                        <input type="checkbox" id="USA" value="american" />
+                        <input type="checkbox" id="USA" options="american" />
 
                         <label for="China"> <CN className='country-flag' /></label>
                         <input type="checkbox" id="China" value="chinese" />
@@ -154,15 +256,15 @@ function MainPage() {
                         <Link to='/logout'>
                             <button className='logout-button'> <BiLogOut /> Logout </button>
                         </Link>
-                    </div>
+                    </form>
 
                 </div>
-            }
+            } */}
 
 
             <div className='recipe-selector'>
                 <div className='picture'>
-                    {/* <img src={randomRecipe.recipes[0].image} /> */}
+                    <img src={randomRecipe ? randomRecipe.recipes[0].image : 'no image'} />
 
                 </div>
                 <IconContext.Provider value={{ size: "2em" }}>
@@ -170,11 +272,11 @@ function MainPage() {
                     <div className='buttons'>
                         <button className='dislike' onClick={() => fetchOnClick()}><TbTrash /></button>
                         <button className='info'>?</button>
-                        <button className='like'><TbToolsKitchen2 /></button>
+                        <button className='like' onClick={() => handleLike()}><TbToolsKitchen2 /></button>
                     </div>
                 </IconContext.Provider>
                 <div className='recipe-name'>
-                    {/* <p>{randomRecipe.recipes[0].title}</p> */}
+                    <p>{randomRecipe && randomRecipe.recipes[0].title}</p>
                 </div>
 
             </div>
