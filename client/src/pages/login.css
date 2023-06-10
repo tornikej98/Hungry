@@ -82,7 +82,7 @@
     font-weight: 600;
     height: 5vh;
     width: 40vw;
-    background-color: rgb(254, 60, 114);
+    background-image: linear-gradient(to top right, rgb(253, 85, 100), rgb(254, 60, 114));
     border-style: solid;
     border-width: 0.5vw;
     color: white;

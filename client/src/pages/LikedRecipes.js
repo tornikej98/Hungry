@@ -41,12 +41,12 @@ function LikedRecipes() {
         <div className='likedRecipePage'>
             <div className='top-bar'>
                 <Link to='/'>
-                    <IconContext.Provider value={{ size: "2em", color: 'black' }}>
+                    <IconContext.Provider value={{ size: "2em", color: '#fe3c72' }}>
                         <BiArrowBack />
                     </IconContext.Provider>
                 </Link>
 
-                <h4>LikedRecipes</h4>
+                <h1>Liked recipes</h1>
 
 
             </div>
@@ -61,7 +61,7 @@ function LikedRecipes() {
                         </div>
 
                         <div className='recipe-info'>
-                            <p >{recipe.title}</p>
+                            <h4 >{recipe.title}</h4>
                         </div>
 
                     </div>

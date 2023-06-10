@@ -1,23 +1,25 @@
 .main-page {
-    background-color: rgb(243, 232, 159);
+    background-color: white;
     height: 100vh;
 }
 
 .picture {
-    margin-top: 10vh;
+    margin-top: 5vh;
     display: inline-flex;
     justify-content: center;
     width: 80vw;
     height: 40vh;
     border-style: solid;
-    border-color: rgb(247, 208, 96);
-    border-width: 2vh;
-    border-radius: 10vw;
+    border-color: rgb(254, 60, 114);
+    border-width: 1vw;
+    border-radius: 15vw;
 }
 
 .picture img {
-    max-width: 100%;
-    max-height: 100%;
+    overflow: hidden;
+    max-width: 110%;
+    max-height: 110%;
+    border-radius: 15vw;
 }
 
 .buttons {
@@ -30,7 +32,10 @@
 
 
 .like {
-    background-color: rgb(152, 216, 170);
+    background-image: linear-gradient(to bottom left, rgb(253, 85, 100), rgb(254, 60, 114));
+    border-style: solid;
+    border-width: 0.5vw;
+    border-color: rgb(239, 74, 117);
     width: 22vw;
     height: 22vw;
     border-radius: 50%;
@@ -38,7 +43,10 @@
 }
 
 .dislike {
-    background-color: rgb(255, 109, 96);
+    background-color: white;
+    border-style: solid;
+    border-width: 0.5vw;
+    border-color: rgb(239, 74, 117);
     width: 22vw;
     height: 22vw;
     border-radius: 50%;
@@ -46,27 +54,34 @@
 }
 
 .info {
+    background-color: #c5cacf;
+    border-color: #fe3c72;
+    border-width: 0.3vw;
+    border-style: solid;
     width: 11vw;
     height: 11vw;
     border-radius: 50%;
     font-weight: 600;
+    color: black;
 }
 
 
+
+
 .recipe-name {
-    margin-top: 8vh;
+    margin-top: 3vh;
 }
 
 .dropdown-menu {
     position: absolute;
-    top: 2.5rem;
-    left: 3rem;
+    top: 2.8rem;
+    left: 2.9rem;
     width: 30vw;
     height: auto;
-    padding: 2vh;
-    background-color: blanchedalmond;
+    padding: 1vh;
+    background-color: #d6dde4;
     border-style: solid;
-    border-color: black;
+    border-color: #fe3c72;
     border-width: 0.5vw;
     border-radius: 1vw;
 }
@@ -77,32 +92,67 @@
     left: 5vw;
     width: 2vw;
     height: 4vw;
-    background-color: blanchedalmond;
+    background-color: #d6dde4;
+}
+
+.filter-icon {
+    display: flex;
+    margin-left: 3vw;
+    margin-bottom: 1vh;
+
+}
+
+.no-btn {
+    font-weight: 600;
+    height: 3vh;
+    width: 10vw;
+    background-color: rgb(253, 85, 100);
+    border-style: solid;
+    border-width: 0.5vw;
+    color: white;
+    border-color: white;
+    border-radius: 0.5rem;
+}
+
+.yes-btn {
+    font-weight: 600;
+    height: 3vh;
+    width: 10vw;
+    background-color: white;
+    border-style: solid;
+    border-width: 0.5vw;
+    color: rgb(253, 85, 100);
+    border-color: rgb(253, 85, 100);
+    border-radius: 0.5rem;
 }
 
 .top-bar {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    background-color: rgb(247, 208, 96);
-
+    background-color: rgb(253, 253, 253);
+    border-bottom-style: solid;
+    border-bottom-width: 0.7vw;
+    border-bottom-color: rgb(254, 60, 114);
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    box-shadow: 0px 7px 11px -4px rgba(107, 107, 107, 0.69);
+    -webkit-box-shadow: 0px 7px 11px -4px rgba(107, 107, 107, 0.69);
+    -moz-box-shadow: 0px 7px 11px -4px rgba(107, 107, 107, 0.69);
+    align-items: center;
 }
 
 .country-flag {
     width: 1.3rem;
 }
 
-.logout-button {
-    width: 5rem;
-    height: 1.5rem;
-    background-color: rgb(255, 70, 70);
-    border-style: none;
-    border-radius: 1.5em;
-}
 
 .dropdown-container {
+    position: relative;
+    z-index: 2;
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
+
 }
 
 .dropdown {
@@ -116,17 +166,25 @@
 
 
 .rmsc {
-    --rmsc-main: #4285f4;
-    --rmsc-hover: #ff0000;
-    --rmsc-selected: #eefa4c;
-    --rmsc-border: rgb(255, 208, 0);
-    --rmsc-gray: rgb(0, 0, 0);
-    --rmsc-bg: #c5c4c4;
-    --rmsc-p: 10px;
-    --rmsc-radius: 1rem;
-    --rmsc-h: 38px;
+    --rmsc-main: rgb(239, 74, 117);
+    --rmsc-hover: #fe3c72;
+    --rmsc-selected: #fe3c72;
+    --rmsc-border: rgb(239, 74, 117);
+    --rmsc-gray: #fe3c72;
+    --rmsc-bg: white;
+    ;
+    --rmsc-p: 2vw;
+    --rmsc-radius: 1.5rem;
+    --rmsc-h: 10vw;
+    --rmsc-border-width: 1.5vw;
 }
 
 .rmsc .dropdown-heading {
     justify-content: space-between;
+}
+
+.mainpage-title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(253, 85, 100);
+    font-weight: 500;
 }

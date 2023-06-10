@@ -24,9 +24,7 @@ export const RegisterUser = () => {
         }
         if (response.ok) {
             localStorage.setItem('user', JSON.stringify(jsonResponse))
-
             dispatch({ type: 'LOGIN', payload: jsonResponse })
-
             setLoading(false)
         }
     }

@@ -14,6 +14,9 @@ import('./login.css')
 
 
 const Login = () => {
+
+
+
     const [email, setEmail] = useState('')
     const [password, setpassword] = useState('')
     const { login, error, loading } = LoginUser()
@@ -23,8 +26,9 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         await login(email, password)
+        console.log(email, password)
+        console.log('hello')
     }
 
     return (
@@ -40,7 +44,11 @@ const Login = () => {
                     <IconContext.Provider value={{ color: 'white' }}>
                         <TfiEmail className='login-icon' />
                     </IconContext.Provider>
-                    <input type="email" placeholder='Email...' onChange={(e) => setEmail(e.target.value)} value={email}
+                    <input
+                        type="email"
+                        placeholder='Email...'
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
                     />
                 </div>
 
@@ -48,15 +56,19 @@ const Login = () => {
                     <IconContext.Provider value={{ color: 'white' }}>
                         <RiLockPasswordLine className='login-icon' />
                     </IconContext.Provider>
-                    <input type="password" placeholder='Password...' onChange={(e) => setpassword(e.target.value)} value={password}
+                    <input
+                        type="password"
+                        placeholder='Password...'
+                        onChange={(e) => setpassword(e.target.value)}
+                        value={password}
                     />
                 </div>
 
 
                 <div className='log-btn'>
-                    <Link to='/'>
-                        <button disabled={loading}>Log in</button>
-                    </Link>
+
+                    <button disabled={loading}>Log in</button>
+
                 </div>
                 <div className='reg-btn'>
                     <Link to='/register'>

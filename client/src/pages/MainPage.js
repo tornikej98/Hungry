@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useAuthCtx } from '../hooks/useAuthCtx';
 import TopBar from "../components/TopBar"
-
+import { LogoutUser } from "../hooks/Logout"
 import { useEffect } from 'react'
 import React, { useState } from 'react'
 import { addLikedRecipe } from '../utils/ApiService'
 
 import { TbToolsKitchen2, TbTrash, TbMeatOff } from 'react-icons/tb'
-import { FiSettings } from 'react-icons/fi'
+import { FiSettings, FiFilter } from 'react-icons/fi'
 import { LuWheatOff, LuVegan } from 'react-icons/lu'
 import { BiLogOut } from 'react-icons/bi'
 import { BsFillHeartFill } from 'react-icons/bs'
@@ -60,7 +60,7 @@ function MainPage() {
     const [dropDown, setDropDown] = useState(false)
     const [likedRecipe, setLikedRecipe] = useState('')
     const [selected, setSelected] = useState([])
-
+    const { logout } = LogoutUser()
 
 
     const arrayOfTags = []
@@ -80,7 +80,6 @@ function MainPage() {
 
 
 
-
     const handleLike = () => {
 
 
@@ -94,8 +93,9 @@ function MainPage() {
         console.log(id, title, image, cuisines, sourceUrl)
         console.log(JSON.stringify({ id, title, image, cuisines, sourceUrl }))
 
-        // fetchOnClick()
+        fetchOnClick()
 
+        console.log(user);
     }
 
 
@@ -141,8 +141,8 @@ function MainPage() {
     // }, [])
 
 
-    // console.log(randomRecipe.recipes)
-    // console.log(randomRecipe)
+    console.log(randomRecipe.recipes)
+    console.log(randomRecipe)
 
 
     //use form for input 
@@ -154,21 +154,23 @@ function MainPage() {
 
         <div className='main-page'>
             <div className='top-bar'>
-                <IconContext.Provider value={{ size: "2em" }}>
+                <IconContext.Provider value={{ size: "2em", color: '#b1b7bd' }}>
                     <BiLogOut className='icon' onClick={() => { setDropDown((prev) => !prev) }} />
                 </IconContext.Provider>
 
-                <h3>Hungry</h3>
+                <h1 className='mainpage-title'>Hungry</h1>
 
                 <Link to='/likedRecipes'>
                     <IconContext.Provider value={{ color: '#fe3c72', size: "2em" }}>
-                        < BsFillHeartFill />
+                        < BsFillHeartFill className='icon' />
                     </IconContext.Provider>
                 </Link>
 
             </div>
 
-
+            <IconContext.Provider value={{ color: '#fe3c72', size: "2em" }}>
+                <FiFilter className='filter-icon' />
+            </IconContext.Provider>
 
             <div className='dropdown-container'>
                 <MultiSelect className='dropdown'
@@ -200,15 +202,78 @@ function MainPage() {
 
             {dropDown && <div className='flex flex-col dropdown-menu'>
                 <h4>Log out?</h4>
-                <button onClick={() => { setDropDown((prev) => !prev) }}>NO</button>
+                <br />
+                <button className="no-btn" onClick={() => { setDropDown((prev) => !prev) }}>No</button>
                 <Link to='/logout'>
-                    <button >Yes</button>
+
+                    <button className="yes-btn" onClick={() => { logout() }}>Yes</button>
                 </Link>
+
 
 
             </div>}
 
-            {/* {
+
+            <div className='recipe-selector'>
+                <div className='picture'>
+
+                    {randomRecipe &&
+
+                        <img src={randomRecipe.recipes[0].image ? randomRecipe.recipes[0].image : 'no image :('} alt="Recipe has no image :( " />
+
+                    }
+                    {/* <img src={randomRecipe.recipes[0].image} /> */}
+
+                </div>
+
+                <div className='recipe-name'>
+
+                    {randomRecipe &&
+
+                        <h4>{randomRecipe && randomRecipe.recipes[0].title}</h4>
+
+                    }
+                    {/* <h4>{randomRecipe && randomRecipe.recipes[0].title}</h4> */}
+                    <h4>this is the title</h4>
+                </div>
+
+
+                <div className='buttons'>
+                    <IconContext.Provider value={{ size: "2em", color: "#ef4a75" }}>
+                        <button className='dislike' onClick={() => fetchOnClick()}><TbTrash /></button>
+                    </IconContext.Provider>
+                    <button className='info'>?</button>
+
+                    <IconContext.Provider value={{ size: "2em", color: "white" }}>
+                        <button className='like' onClick={() => handleLike()}><TbToolsKitchen2 /></button>
+                    </IconContext.Provider>
+                </div>
+
+
+
+            </div>
+
+
+        </div >
+
+    )
+
+
+}
+
+
+
+export default MainPage
+
+
+
+
+
+
+
+
+
+{/* {
                 dropDown && <div className='flex flex-col dropdown-menu'>
                     <form className='flex flex-col gap-4'>
                         <h3>Cuisine</h3>
@@ -270,37 +335,3 @@ function MainPage() {
 
                 </div>
             } */}
-
-
-            <div className='recipe-selector'>
-                <div className='picture'>
-
-                    {/* {randomRecipe.recipes[0].image ? <img src={randomRecipe.recipes[0].image} /> : 'no image'} */}
-                    {/* <img src={randomRecipe.recipes[0].image} /> */}
-
-                </div>
-                <IconContext.Provider value={{ size: "2em" }}>
-
-                    <div className='buttons'>
-                        <button className='dislike' onClick={() => fetchOnClick()}><TbTrash /></button>
-                        <button className='info'>?</button>
-                        <button className='like' onClick={() => handleLike()}><TbToolsKitchen2 /></button>
-                    </div>
-                </IconContext.Provider>
-                <div className='recipe-name'>
-                    {/* <p>{randomRecipe && randomRecipe.recipes[0].title}</p> */}
-                </div>
-
-            </div>
-
-
-        </div>
-
-    )
-
-
-}
-
-
-
-export default MainPage
