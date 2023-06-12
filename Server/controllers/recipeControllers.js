@@ -11,11 +11,11 @@ exports.getAllRecipes = async (req, res) => {
 }
 
 exports.addRecipe = async (req, res) => {
-    const { id, title, image, tags, sourceUrl } = req.body
+    const { id, title, image, tags, sourceUrl, } = req.body
 
     try {
         const user_id = req.user._id
-        const recipe = await Recipe.create({ id, title, image, tags, sourceUrl, user_id })
+        const recipe = await Recipe.create({ id, title, image, tags, sourceUrl, user_id, })
 
         res.status(200).json(recipe)
     } catch (err) {

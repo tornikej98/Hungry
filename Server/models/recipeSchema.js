@@ -14,7 +14,7 @@ const recipeSchema = new Schema({
     user_id: {
         type: String,
         required: true
-    }
+    },
     // cuisine: String,
     // glutenFree: Boolean,
     // vegetarian: Boolean,

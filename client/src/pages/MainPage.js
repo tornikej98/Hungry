@@ -15,6 +15,8 @@ import { IconContext } from "react-icons";
 import { US, CN, GR, IT, IN, JP, MX, TH, VN } from 'country-flag-icons/react/3x2'
 import { MultiSelect } from "react-multi-select-component"
 
+
+
 import('./mainpage.css')
 
 
@@ -33,7 +35,7 @@ const cuisine = [
 
 const mealType = [
     { label: 'Breakfast', value: "breakfast" },
-    { label: 'Apetizer', value: "apetizer" },
+    { label: 'Appetizer', value: "apetizer" },
     { label: 'Main', value: "main+course" },
     { label: "Dessert", value: "dessert" },
 
@@ -71,9 +73,7 @@ function MainPage() {
     })
 
     const stringTags = arrayOfTags.toString()
-    // let tagsForAPI = selected.reduce((result, tag) => {
-    //     return `${result}${tag.value}`, ''
-    // })
+
 
 
     const api = `https://api.spoonacular.com/recipes/random?number=1&tags=${stringTags}&apiKey=e0be19ede420492499f458b771674281`
@@ -84,18 +84,18 @@ function MainPage() {
 
 
 
-        const { id, title, image, cuisines, sourceUrl, } = randomRecipe.recipes[0]
-        addLikedRecipe(({ id, title, image, cuisines, sourceUrl }), user)
+        // const { id, title, image, cuisines, sourceUrl } = randomRecipe.recipes[0]
+        // addLikedRecipe(({ id, title, image, cuisines, sourceUrl }), user)
 
 
-        console.log(stringTags)
-        console.log(randomRecipe.recipes[0])
-        console.log(id, title, image, cuisines, sourceUrl)
-        console.log(JSON.stringify({ id, title, image, cuisines, sourceUrl }))
+        // console.log(stringTags)
+        // console.log(randomRecipe.recipes[0])
+        // console.log(id, title, image, cuisines, sourceUrl)
+        // console.log(JSON.stringify({ id, title, image, cuisines, sourceUrl }))
 
-        fetchOnClick()
+        // fetchOnClick()
 
-        console.log(user);
+        // console.log(user);
     }
 
 
@@ -144,10 +144,6 @@ function MainPage() {
     console.log(randomRecipe.recipes)
     console.log(randomRecipe)
 
-
-    //use form for input 
-    //on change update state variable
-    //
 
     return (
 
@@ -200,40 +196,32 @@ function MainPage() {
                 />
             </div>
 
-            {dropDown && <div className='flex flex-col dropdown-menu'>
-                <h4>Log out?</h4>
-                <br />
-                <button className="no-btn" onClick={() => { setDropDown((prev) => !prev) }}>No</button>
-                <Link to='/logout'>
+            {
+                dropDown && <div className='flex flex-col dropdown-menu'>
+                    <h4>Log out?</h4>
+                    <br />
+                    <button className="no-btn" onClick={() => { setDropDown((prev) => !prev) }}>No</button>
+                    <Link to='/logout'>
 
-                    <button className="yes-btn" onClick={() => { logout() }}>Yes</button>
-                </Link>
-
-
-
-            </div>}
+                        <button className="yes-btn" onClick={() => { logout() }}>Yes</button>
+                    </Link>
+                </div>
+            }
 
 
             <div className='recipe-selector'>
                 <div className='picture'>
-
-                    {randomRecipe &&
-
+                    {
+                        randomRecipe &&
                         <img src={randomRecipe.recipes[0].image ? randomRecipe.recipes[0].image : 'no image :('} alt="Recipe has no image :( " />
-
                     }
-                    {/* <img src={randomRecipe.recipes[0].image} /> */}
-
                 </div>
 
                 <div className='recipe-name'>
-
-                    {randomRecipe &&
-
+                    {
+                        randomRecipe &&
                         <h4>{randomRecipe && randomRecipe.recipes[0].title}</h4>
-
                     }
-                    {/* <h4>{randomRecipe && randomRecipe.recipes[0].title}</h4> */}
                     <h4>this is the title</h4>
                 </div>
 
@@ -249,15 +237,11 @@ function MainPage() {
                     </IconContext.Provider>
                 </div>
 
-
-
             </div>
-
 
         </div >
 
     )
-
 
 }
 

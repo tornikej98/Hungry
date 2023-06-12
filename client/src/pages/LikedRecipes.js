@@ -6,12 +6,17 @@ import { useAuthCtx } from '../hooks/useAuthCtx';
 import { BiArrowBack } from 'react-icons/bi'
 import { IconContext } from "react-icons";
 
+import { RecipeContext } from '../context/RecipeContext';
+import RecipeDetails from '../components/RecipeDetails';
+
 import('./likedrecipes.css')
 
 function LikedRecipes() {
     const { recipes, dispatch } = useRecipeCtx()
     const { user } = useAuthCtx()
     // console.log(user)
+
+
 
 
     //localstorage get item to retrieve token
@@ -36,6 +41,10 @@ function LikedRecipes() {
     }, [])
 
 
+
+
+
+
     return (
 
         <div className='likedRecipePage'>
@@ -55,16 +64,7 @@ function LikedRecipes() {
 
                 {recipes && recipes.map((recipe) => (
 
-                    <div key={recipe._id} className='recipe'>
-                        <div className='recipe-image'>
-                            <img src={recipe.image} />
-                        </div>
-
-                        <div className='recipe-info'>
-                            <h4 >{recipe.title}</h4>
-                        </div>
-
-                    </div>
+                    <RecipeDetails key={recipe._id} recipe={recipe} />
 
                 ))}
             </div>
