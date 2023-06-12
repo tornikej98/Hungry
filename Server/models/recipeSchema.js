@@ -4,6 +4,12 @@ const { mongoose } = require('./index')
 const Schema = mongoose.Schema
 
 
+// const analyzedInst = new Schema({
+//     name: String,
+//     steps: {
+
+//     }
+// })
 
 const recipeSchema = new Schema({
     id: Number,
@@ -15,6 +21,11 @@ const recipeSchema = new Schema({
         type: String,
         required: true
     },
+    favorite: { type: Boolean, default: false },
+    summary: String,
+    instructions: String,
+    // analyzedInstructions: [analyzedInst],
+
     // cuisine: String,
     // glutenFree: Boolean,
     // vegetarian: Boolean,

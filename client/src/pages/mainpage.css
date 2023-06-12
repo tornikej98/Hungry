@@ -1,5 +1,5 @@
 .main-page {
-    background-color: white;
+    background-image: linear-gradient(to bottom left, rgb(253, 85, 100), rgb(254, 60, 114));
     height: 100vh;
 }
 
@@ -10,13 +10,13 @@
     width: 80vw;
     height: 40vh;
     border-style: solid;
-    border-color: rgb(254, 60, 114);
+    border-color: rgb(255, 255, 255);
     border-width: 1vw;
     border-radius: 15vw;
 }
 
 .picture img {
-    overflow: hidden;
+    /* overflow: hidden; */
     max-width: 110%;
     max-height: 110%;
     border-radius: 15vw;
@@ -32,10 +32,10 @@
 
 
 .like {
-    background-image: linear-gradient(to bottom left, rgb(253, 85, 100), rgb(254, 60, 114));
+    background-color: white;
     border-style: solid;
     border-width: 0.5vw;
-    border-color: rgb(239, 74, 117);
+    border-color: rgb(253, 85, 100);
     width: 22vw;
     height: 22vw;
     border-radius: 50%;
@@ -43,10 +43,10 @@
 }
 
 .dislike {
-    background-color: white;
+    background-image: linear-gradient(to bottom left, rgb(253, 85, 100), rgb(239, 74, 117));
     border-style: solid;
     border-width: 0.5vw;
-    border-color: rgb(239, 74, 117);
+    border-color: rgb(255, 255, 255);
     width: 22vw;
     height: 22vw;
     border-radius: 50%;

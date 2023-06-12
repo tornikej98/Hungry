@@ -1,0 +1,12 @@
+.recipe-info {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+}
+
+.fave-del {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 4vw;
+}

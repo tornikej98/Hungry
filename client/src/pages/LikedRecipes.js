@@ -28,7 +28,7 @@ function LikedRecipes() {
 
                 })
                 const jsonResponse = await response.json()
-
+                console.log(jsonResponse)
                 if (response.ok) {
                     dispatch({ type: 'SHOW_RECIPES', payload: jsonResponse })
                 }
@@ -55,18 +55,21 @@ function LikedRecipes() {
                     </IconContext.Provider>
                 </Link>
 
-                <h1>Liked recipes</h1>
+                <h1>Liked Recipes</h1>
 
 
             </div>
-            <div className='recipe-list'>
+
+            <div className='ordered-recipe'>
+                <div className='recipe-list'>
 
 
-                {recipes && recipes.map((recipe) => (
+                    {recipes && recipes.map((recipe) => (
 
-                    <RecipeDetails key={recipe._id} recipe={recipe} />
+                        <RecipeDetails key={recipe._id} recipe={recipe} />
 
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     )

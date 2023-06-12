@@ -12,6 +12,8 @@ import { RecipeCtxProvider } from './context/RecipeContext';
 
 import { useAuthCtx } from './hooks/useAuthCtx';
 import MainPage from './pages/MainPage';
+import RecipePage from './pages/RecipePage';
+import RecipeDetails from './components/RecipeDetails';
 
 
 
@@ -44,8 +46,15 @@ function App() {
             />
 
             <Route
-              path='/likedRecipes'
+              exact
+              path='/likedRecipes/'
               element={user ? <LikedRecipes /> : <Navigate to='/login' />}
+            />
+
+            <Route
+              exact
+              path="/recipePage/:id"
+              element={user ? <RecipePage /> : <Navigate to='/login' />}
             />
           </Routes>
 

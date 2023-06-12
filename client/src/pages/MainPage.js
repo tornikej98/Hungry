@@ -84,8 +84,8 @@ function MainPage() {
 
 
 
-        // const { id, title, image, cuisines, sourceUrl } = randomRecipe.recipes[0]
-        // addLikedRecipe(({ id, title, image, cuisines, sourceUrl }), user)
+        // const { id, title, image, cuisines, sourceUrl, summary, instructions } = randomRecipe.recipes[0]
+        // addLikedRecipe(({ id, title, image, cuisines, sourceUrl, summary, instructions }), user)
 
 
         // console.log(stringTags)
@@ -164,9 +164,11 @@ function MainPage() {
 
             </div>
 
-            <IconContext.Provider value={{ color: '#fe3c72', size: "2em" }}>
+            <IconContext.Provider value={{ color: 'white', size: "2em" }}>
                 <FiFilter className='filter-icon' />
             </IconContext.Provider>
+
+
 
             <div className='dropdown-container'>
                 <MultiSelect className='dropdown'
@@ -227,12 +229,12 @@ function MainPage() {
 
 
                 <div className='buttons'>
-                    <IconContext.Provider value={{ size: "2em", color: "#ef4a75" }}>
+                    <IconContext.Provider value={{ size: "2em", color: "white" }}>
                         <button className='dislike' onClick={() => fetchOnClick()}><TbTrash /></button>
                     </IconContext.Provider>
                     <button className='info'>?</button>
 
-                    <IconContext.Provider value={{ size: "2em", color: "white" }}>
+                    <IconContext.Provider value={{ size: "2em", color: "#ef4a75" }}>
                         <button className='like' onClick={() => handleLike()}><TbToolsKitchen2 /></button>
                     </IconContext.Provider>
                 </div>
