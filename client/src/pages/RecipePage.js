@@ -15,11 +15,45 @@ function RecipePage() {
     const [comment, setComment] = useState('')
     const { user } = useAuthCtx()
     const params = useParams()
+    const { dispatch } = useRecipeCtx()
 
 
     console.log(params)
 
 
+
+    //send comment through the body
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(comment)
+        const addComment = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/recipes/' + params.id + '/updatenote', {
+                    method: 'PUT',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${user.accessToken} `
+                    },
+                    body: JSON.stringify(comment)
+
+                })
+                console.log(JSON.stringify(comment))
+                // const jsonResponse = await response.json()
+                // console.log(jsonResponse)
+                if (response.ok) {
+                    dispatch({ type: 'ADD_NOTES', payload: comment })
+                }
+
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        addComment()
+    }
 
     useEffect(() => {
 
@@ -108,13 +142,17 @@ function RecipePage() {
 
                 <div className='recipe-notes'>
                     <h4>Notes:</h4>
-                    <textarea className='recipe-notes-textarea' placeholder='add notes...' onChange={setComment}></textarea>
+                    <form onSubmit={handleSubmit}>
+                        <textarea className='recipe-notes-textarea' placeholder='add notes...' onChange={(e) => { setComment({ notes: e.target.value }) }} defaultValue={selectedRecipe.notes} ></textarea>
+                        <button className='notes-button' type='submit'>Update Notes</button>
+                    </form>
+
                 </div>
 
 
 
 
-                <a href={selectedRecipe.sourceUrl}>
+                <a href={selectedRecipe.sourceUrl} className='link-website'>
                     <h4>View the full recipe here...</h4>
                 </a>
 

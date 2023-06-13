@@ -5,7 +5,7 @@ const apikey = 'e0be19ede420492499f458b771674281'
 
 // const api = `https://api.spoonacular.com/recipes/random?number=1&tags=${stringTags}&apiKey=e0be19ede420492499f458b771674281`
 
-const api = 'https://api.spoonacular.com/recipes/random?number=1&tags'
+const api = 'https://api.spoonacular.com/recipes/random?number=1&tags='
 
 // const userLink = "http://127.0.0.1:5000/user"
 

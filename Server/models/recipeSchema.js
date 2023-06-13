@@ -26,7 +26,8 @@ const recipeSchema = new Schema({
     instructions: String,
     extendedIngredients: [{
         name: String,
-    }]
+    }],
+    notes: { type: String, default: '' }
     // analyzedInstructions: [analyzedInst],
 
     // cuisine: String,

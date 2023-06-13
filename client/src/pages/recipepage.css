@@ -42,12 +42,8 @@
     padding-top: 2vh;
     border-top-style: double;
     border-bottom-style: double;
-    /* border-top-color: white;
-    border-bottom-color: white; */
     border-top-color: rgb(239, 74, 117);
-    ;
     border-bottom-color: rgb(239, 74, 117);
-    ;
 
 }
 
@@ -73,20 +69,48 @@
     display: flex;
     width: 80vw;
     padding-bottom: 2vh;
+
 }
 
 .recipe-notes {
+    padding-top: 2vh;
+    border-top-style: double;
+    border-top-color: rgb(239, 74, 117);
+    border-bottom-color: rgb(239, 74, 117);
     width: 90vw;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 4vh;
 
 }
 
 
 
 .recipe-notes-textarea {
+
+    display: flex;
+    width: 90vw;
     height: 15vh;
     resize: none;
     font-size: 1.2em;
+}
+
+.notes-button {
+    margin-top: 1vh;
+    font-weight: 600;
+    height: 5vh;
+    width: 40vw;
+    background-image: linear-gradient(to top right, rgb(253, 85, 100), rgb(254, 60, 114));
+    border-style: solid;
+    border-width: 0.5vw;
+    color: white;
+    border-radius: 2rem;
+}
+
+.link-website {
+
+    margin-bottom: 2vh;
+    color: rgb(239, 74, 117);
 }

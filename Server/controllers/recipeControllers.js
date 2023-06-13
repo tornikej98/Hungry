@@ -25,11 +25,11 @@ exports.getOneRecipe = async (req, res) => {
 }
 
 exports.addRecipe = async (req, res) => {
-    const { id, title, image, tags, sourceUrl, favorite, summary, instructions, extendedIngredients } = req.body
+    const { id, title, image, tags, sourceUrl, favorite, summary, instructions, extendedIngredients, notes } = req.body
 
     try {
         const user_id = req.user._id
-        const recipe = await Recipe.create({ id, title, image, tags, sourceUrl, user_id, favorite, summary, instructions, extendedIngredients })
+        const recipe = await Recipe.create({ id, title, image, tags, sourceUrl, user_id, favorite, summary, instructions, extendedIngredients, notes })
 
         res.status(200).json(recipe)
     } catch (err) {
@@ -56,6 +56,19 @@ exports.favoriteRecipe = async (req, res) => {
 
     try {
         const recipe = await Recipe.findOneAndUpdate({ id: id }, [{ $set: { favorite: { $eq: [false, "$favorite"] } } }]);
+        console.log(recipe)
+        res.status(200).json(recipe)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+
+}
+
+exports.addComment = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const recipe = await Recipe.findOneAndUpdate({ id: id }, { notes: req.body.notes });
         console.log(recipe)
         res.status(200).json(recipe)
     } catch (err) {

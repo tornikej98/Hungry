@@ -31,6 +31,14 @@ export const recipeReducer = (state, action) => {
             return {
                 recipes: state.recipes.filter((recipe) => recipe.id)
             }
+        case 'ADD_COMMENT':
+            return {
+                recipes: state.recipes.map((rec) => {
+                    if (rec.id === action.payload.id) {
+                        rec.notes = action.payload
+                    }
+                })
+            }
         default:
 
             return state

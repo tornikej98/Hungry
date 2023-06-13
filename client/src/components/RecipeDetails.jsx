@@ -34,7 +34,7 @@ function RecipeDetails({ recipe }) {
 
     const handleFave = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:5000/recipes/' + recipe.id, {
+            const response = await fetch('http://127.0.0.1:5000/recipes/' + recipe.id + '/favorite', {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${user.accessToken} `

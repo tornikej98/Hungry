@@ -72,9 +72,6 @@ function MainPage() {
 
 
 
-    // const api = `https://api.spoonacular.com/recipes/random?number=1&tags=${stringTags}&apiKey=e0be19ede420492499f458b771674281`
-
-
 
     const handleLike = () => {
 
@@ -85,18 +82,6 @@ function MainPage() {
         // fetchOnClick()
 
 
-
-
-        //REMOVE
-        // console.log(stringTags)
-        // console.log(randomRecipe.recipes[0])
-        // console.log(id, title, image, cuisines, sourceUrl)
-        // console.log(JSON.stringify({ id, title, image, cuisines, sourceUrl }))
-
-
-
-        // console.log(user);
-        //REMOVE-END
     }
 
 
@@ -105,15 +90,15 @@ function MainPage() {
 
 
 
-        const recipe = await fetchRecipeFromApi(stringTags)
+        // const recipe = await fetchRecipeFromApi(stringTags)
 
-        if (recipe.ok) {
-            setRandomRecipe(recipe)
-            setLoading(false)
+        // if (recipe.ok) {
+        //     setRandomRecipe(recipe)
+        //     setLoading(false)
 
-        } else {
-            console.log('error')
-        }
+        // } else {
+        //     console.log('error')
+        // }
 
 
 
@@ -125,7 +110,7 @@ function MainPage() {
         //     const recipe = await fetchRecipeFromApi(stringTags)
 
         //     if (recipe.ok) {
-        //         (recipe)
+        //         setRandomRecipe(recipe)
         //         setLoading(false)
 
         //     } else {
@@ -134,7 +119,7 @@ function MainPage() {
         // }
 
 
-        // getRecipes()
+        //     getRecipes()
 
 
 
