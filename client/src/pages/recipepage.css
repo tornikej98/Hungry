@@ -51,8 +51,42 @@
 
 }
 
-.recipe-instructions {
-    padding-top: 1vh;
-    display: flex;
+
+
+.recipe-ingredients {
+    padding-bottom: 2vh;
+    padding-top: 2vh;
     width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom-style: double;
+
+    border-bottom-color: white;
+    ;
+    border-bottom-color: rgb(239, 74, 117);
+    ;
+}
+
+.recipe-instructions {
+    padding-top: 2vh;
+    display: flex;
+    width: 80vw;
+    padding-bottom: 2vh;
+}
+
+.recipe-notes {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+
+
+
+.recipe-notes-textarea {
+    height: 15vh;
+    resize: none;
+    font-size: 1.2em;
 }

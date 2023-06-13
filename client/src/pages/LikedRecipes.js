@@ -5,7 +5,7 @@ import TopBar from "../components/TopBar";
 import { useAuthCtx } from '../hooks/useAuthCtx';
 import { BiArrowBack } from 'react-icons/bi'
 import { IconContext } from "react-icons";
-
+import { fetchLikedRecipes } from '../utils/ApiService';
 import { RecipeContext } from '../context/RecipeContext';
 import RecipeDetails from '../components/RecipeDetails';
 
@@ -21,24 +21,25 @@ function LikedRecipes() {
 
     //localstorage get item to retrieve token
     useEffect(() => {
-        const fetchLikedRecipes = async () => {
-            try {
-                const response = await fetch('http://127.0.0.1:5000/recipes/', {
-                    headers: { 'Authorization': `Bearer ${user.accessToken} ` },
 
-                })
-                const jsonResponse = await response.json()
-                console.log(jsonResponse)
-                if (response.ok) {
-                    dispatch({ type: 'SHOW_RECIPES', payload: jsonResponse })
-                }
-            } catch (error) {
-                console.log(error)
+        const getRecipes = async () => {
+
+            const fetchedRecipes = await fetchLikedRecipes(user)
+
+            if (fetchedRecipes.ok) {
+                dispatch({ type: 'SHOW_RECIPES', payload: fetchedRecipes })
+
+
+            } else {
+                console.log('error')
             }
         }
-        fetchLikedRecipes()
-        console.log(user.accessToken)
+
+
+        getRecipes()
     }, [])
+
+
 
 
 
@@ -64,7 +65,7 @@ function LikedRecipes() {
                 <div className='recipe-list'>
 
 
-                    {recipes && recipes.map((recipe) => (
+                    {recipes && recipes.sort((a, b) => b.favorite - a.favorite).map((recipe) => (
 
                         <RecipeDetails key={recipe._id} recipe={recipe} />
 

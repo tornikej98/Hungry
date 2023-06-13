@@ -65,19 +65,23 @@ function RecipeDetails({ recipe }) {
 
                 <div key={recipe._id} className='recipe'>
                     <div className='recipe-image'>
-                        <img src={recipe.image} />
+
+
+                        <Link to={{
+                            pathname: `/recipePage/${recipe.id}`,
+                        }} >
+                            <img src={recipe.image} />
+                        </Link>
+
+
                     </div>
 
                     <div className='recipe-info'>
                         <h4 >{recipe.title}</h4>
 
-                        <Link to={{
-                            pathname: `/recipePage/${recipe.id}`,
-                        }} >
-                            <p>{recipe.id}</p>
-                        </Link>
 
-                        {/* <a href={recipe.sourceUrl}>Link to recipe</a> */}
+
+
                     </div>
                     <div className='fave-del'>
 

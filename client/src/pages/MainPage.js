@@ -5,7 +5,7 @@ import { LogoutUser } from "../hooks/Logout"
 import { useEffect } from 'react'
 import React, { useState } from 'react'
 import { addLikedRecipe } from '../utils/ApiService'
-
+import SyncLoader from 'react-spinners/SyncLoader'
 import { TbToolsKitchen2, TbTrash, TbMeatOff } from 'react-icons/tb'
 import { FiSettings, FiFilter } from 'react-icons/fi'
 import { LuWheatOff, LuVegan } from 'react-icons/lu'
@@ -14,7 +14,7 @@ import { BsFillHeartFill } from 'react-icons/bs'
 import { IconContext } from "react-icons";
 import { US, CN, GR, IT, IN, JP, MX, TH, VN } from 'country-flag-icons/react/3x2'
 import { MultiSelect } from "react-multi-select-component"
-
+import { fetchRecipeFromApi } from '../utils/ApiService';
 
 
 import('./mainpage.css')
@@ -49,11 +49,6 @@ const diet = [
 ]
 
 
-//make api call on page startup
-
-//if red button is clicked make another call (changing the image)
-//if green button is called, post recipe in database, and then make another call (changing the image)
-
 
 
 function MainPage() {
@@ -63,6 +58,7 @@ function MainPage() {
     const [likedRecipe, setLikedRecipe] = useState('')
     const [selected, setSelected] = useState([])
     const { logout } = LogoutUser()
+    const [loading, setLoading] = useState(false)
 
 
     const arrayOfTags = []
@@ -76,7 +72,7 @@ function MainPage() {
 
 
 
-    const api = `https://api.spoonacular.com/recipes/random?number=1&tags=${stringTags}&apiKey=e0be19ede420492499f458b771674281`
+    // const api = `https://api.spoonacular.com/recipes/random?number=1&tags=${stringTags}&apiKey=e0be19ede420492499f458b771674281`
 
 
 
@@ -84,61 +80,65 @@ function MainPage() {
 
 
 
-        // const { id, title, image, cuisines, sourceUrl, summary, instructions } = randomRecipe.recipes[0]
-        // addLikedRecipe(({ id, title, image, cuisines, sourceUrl, summary, instructions }), user)
+        // const { id, title, image, cuisines, sourceUrl, summary, instructions, extendedIngredients } = randomRecipe.recipes[0]
+        // addLikedRecipe(({ id, title, image, cuisines, sourceUrl, summary, instructions, extendedIngredients }), user)
+        // fetchOnClick()
 
 
+
+
+        //REMOVE
         // console.log(stringTags)
         // console.log(randomRecipe.recipes[0])
         // console.log(id, title, image, cuisines, sourceUrl)
         // console.log(JSON.stringify({ id, title, image, cuisines, sourceUrl }))
 
-        // fetchOnClick()
+
 
         // console.log(user);
+        //REMOVE-END
     }
 
 
 
     const fetchOnClick = async () => {
 
-        // try {
-        //     const response = await fetch(api, {
 
-        //     })
-        //     const jsonResponse = await response.json()
 
-        //     if (response.ok) {
-        //         setRandomRecipe(jsonResponse)
-        //     }
-        //     console.log(randomRecipe.recipes)
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        const recipe = await fetchRecipeFromApi(stringTags)
+
+        if (recipe.ok) {
+            setRandomRecipe(recipe)
+            setLoading(false)
+
+        } else {
+            console.log('error')
+        }
+
+
+
     }
 
 
-    // useEffect(() => {
+    useEffect(() => {
+        // const getRecipes = async () => {
+        //     const recipe = await fetchRecipeFromApi(stringTags)
 
-    //     const fetchOnStartup = async () => {
-    //         try {
-    //             const response = await fetch(api, {
+        //     if (recipe.ok) {
+        //         (recipe)
+        //         setLoading(false)
 
-    //             })
-    //             const jsonResponse = await response.json()
+        //     } else {
+        //         console.log('error')
+        //     }
+        // }
 
-    //             if (response.ok) {
-    //                 setRandomRecipe(jsonResponse)
-    //             }
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
 
-    //     fetchOnStartup()
+        // getRecipes()
 
-    //     console.log('effect')
-    // }, [])
+
+
+    }, [])
 
 
     console.log(randomRecipe.recipes)
@@ -214,17 +214,19 @@ function MainPage() {
             <div className='recipe-selector'>
                 <div className='picture'>
                     {
-                        randomRecipe &&
-                        <img src={randomRecipe.recipes[0].image ? randomRecipe.recipes[0].image : 'no image :('} alt="Recipe has no image :( " />
+                        randomRecipe ?
+                            <img src={randomRecipe.recipes[0].image ? randomRecipe.recipes[0].image : 'no image :('} alt="Recipe has no image :( " />
+                            :
+                            <SyncLoader color='white' />
                     }
                 </div>
 
                 <div className='recipe-name'>
                     {
-                        randomRecipe &&
+
                         <h4>{randomRecipe && randomRecipe.recipes[0].title}</h4>
                     }
-                    <h4>this is the title</h4>
+
                 </div>
 
 
@@ -232,7 +234,7 @@ function MainPage() {
                     <IconContext.Provider value={{ size: "2em", color: "white" }}>
                         <button className='dislike' onClick={() => fetchOnClick()}><TbTrash /></button>
                     </IconContext.Provider>
-                    <button className='info'>?</button>
+                    {/* <button className='info'>?</button> */}
 
                     <IconContext.Provider value={{ size: "2em", color: "#ef4a75" }}>
                         <button className='like' onClick={() => handleLike()}><TbToolsKitchen2 /></button>

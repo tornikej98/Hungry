@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { fetchRecipeDetails } from '../utils/ApiService'
 import { useAuthCtx } from '../hooks/useAuthCtx'
 import { useRecipeCtx } from '../hooks/useRecipeCtx'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
@@ -8,8 +9,10 @@ import { IconContext } from 'react-icons'
 import { BiArrowBack } from 'react-icons/bi'
 import('./recipepage.css')
 
+
 function RecipePage() {
     const [selectedRecipe, setSelectedRecipe] = useState('')
+    const [comment, setComment] = useState('')
     const { user } = useAuthCtx()
     const params = useParams()
 
@@ -19,25 +22,31 @@ function RecipePage() {
 
 
     useEffect(() => {
-        const fetchOnStartup = async () => {
-            try {
-                const response = await fetch('http://127.0.0.1:5000/recipes/' + params.id, {
-                    headers: { 'Authorization': `Bearer ${user.accessToken} ` }
-                })
-                const jsonResponse = await response.json()
 
-                if (response.ok) {
-                    setSelectedRecipe(jsonResponse)
-                }
-            } catch (error) {
-                console.log(error)
+        const fetchRecipeOnStartup = async () => {
+
+            const response = await fetchRecipeDetails(params.id, user)
+
+            if (response.ok) {
+                setSelectedRecipe(response)
             }
         }
 
-        fetchOnStartup()
+        fetchRecipeOnStartup()
+
+
 
     }, [])
 
+
+
+
+    // console.log(selectedRecipe.extendedIngredients)
+
+
+    // selectedRecipe && selectedRecipe.extendedIngredients.map((num) => {
+    //     console.log(num.name)
+    // })
 
 
 
@@ -77,11 +86,34 @@ function RecipePage() {
                     <p dangerouslySetInnerHTML={{ __html: summary }}></p>
                 </div>
 
+                <div className='recipe-ingredients-container'>
+                    <div className='recipe-ingredients'>
+                        <h4>Ingredients:</h4>
+                        {
+                            selectedRecipe && selectedRecipe.extendedIngredients.map((num) => (
+
+                                <li key={num._id}>{num.name}</li>
+
+                            ))
+                        }
+                    </div>
+
+                </div>
+
+
                 <div className='recipe-instructions'>
                     <p dangerouslySetInnerHTML={{ __html: instructions }}></p>
                 </div>
 
-                <br />
+
+                <div className='recipe-notes'>
+                    <h4>Notes:</h4>
+                    <textarea className='recipe-notes-textarea' placeholder='add notes...' onChange={setComment}></textarea>
+                </div>
+
+
+
+
                 <a href={selectedRecipe.sourceUrl}>
                     <h4>View the full recipe here...</h4>
                 </a>

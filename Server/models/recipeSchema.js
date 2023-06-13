@@ -24,6 +24,9 @@ const recipeSchema = new Schema({
     favorite: { type: Boolean, default: false },
     summary: String,
     instructions: String,
+    extendedIngredients: [{
+        name: String,
+    }]
     // analyzedInstructions: [analyzedInst],
 
     // cuisine: String,
