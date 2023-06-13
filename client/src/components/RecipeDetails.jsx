@@ -17,7 +17,7 @@ function RecipeDetails({ recipe }) {
     const handleDelete = async () => {
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/recipes/' + recipe._id, {
+            const response = await fetch(process.env.REACT_APP_DB_LINK + '/recipes/' + recipe._id, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${user.accessToken}` }
             })
@@ -34,7 +34,7 @@ function RecipeDetails({ recipe }) {
 
     const handleFave = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:5000/recipes/' + recipe.id + '/favorite', {
+            const response = await fetch(process.env.REACT_APP_DB_LINK + '/recipes/' + recipe.id + '/favorite', {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${user.accessToken} `

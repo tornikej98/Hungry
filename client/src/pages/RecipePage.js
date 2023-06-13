@@ -17,19 +17,12 @@ function RecipePage() {
     const params = useParams()
     const { dispatch } = useRecipeCtx()
 
-
-    console.log(params)
-
-
-
-    //send comment through the body
-
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(comment)
         const addComment = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:5000/recipes/' + params.id + '/updatenote', {
+                const response = await fetch(process.env.REACT_APP_DB_LINK + '/recipes/' + params.id + '/updatenote', {
                     method: 'PUT',
                     mode: 'cors',
                     headers: {
@@ -71,17 +64,6 @@ function RecipePage() {
 
 
     }, [])
-
-
-
-
-    // console.log(selectedRecipe.extendedIngredients)
-
-
-    // selectedRecipe && selectedRecipe.extendedIngredients.map((num) => {
-    //     console.log(num.name)
-    // })
-
 
 
     const summary = selectedRecipe.summary
@@ -148,8 +130,6 @@ function RecipePage() {
                     </form>
 
                 </div>
-
-
 
 
                 <a href={selectedRecipe.sourceUrl} className='link-website'>

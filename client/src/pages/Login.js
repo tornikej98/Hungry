@@ -21,14 +21,11 @@ const Login = () => {
     const [password, setpassword] = useState('')
     const { login, error, loading } = LoginUser()
 
-    // const user = useAuthCtx()
-    // console.log(user)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         await login(email, password)
-        console.log(email, password)
-        console.log('hello')
+
     }
 
     return (

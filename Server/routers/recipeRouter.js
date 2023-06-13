@@ -11,8 +11,6 @@ router
     .put('/:id/favorite', authMiddleware, favoriteRecipe)
     .put('/:id/updatenote', authMiddleware, addComment)
     .get('/:id', authMiddleware, getOneRecipe)
-// .get('/favoriteRecipes', eventController.getAllRecipes)
-// .post('/favoriteRecipes', eventController.getAllRecipes)
 
 
 module.exports = router

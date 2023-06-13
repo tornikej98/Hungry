@@ -126,8 +126,6 @@ function MainPage() {
     }, [])
 
 
-    console.log(randomRecipe.recipes)
-    console.log(randomRecipe)
 
 
     return (
@@ -241,70 +239,3 @@ export default MainPage
 
 
 
-
-
-
-
-
-{/* {
-                dropDown && <div className='flex flex-col dropdown-menu'>
-                    <form className='flex flex-col gap-4'>
-                        <h3>Cuisine</h3>
-                        <label for="USA"> <US className='country-flag' /></label>
-                        <input type="checkbox" id="USA" options="american" />
-
-                        <label for="China"> <CN className='country-flag' /></label>
-                        <input type="checkbox" id="China" value="chinese" />
-
-                        <label for="Greece"> <GR className='country-flag' /></label>
-                        <input type="checkbox" id="Greece" value="greek" />
-
-                        <label for="India"> <IN className='country-flag' /></label>
-                        <input type="checkbox" id="India" value="indian" />
-
-                        <label for="Italy"> <IT className='country-flag' /></label>
-                        <input type="checkbox" id="Italy" value="italian" />
-
-                        <label for="Japan"> <JP className='country-flag' /></label>
-                        <input type="checkbox" id="Japan" value="japanese" />
-
-                        <label for="Mexico"> <MX className='country-flag' /></label>
-                        <input type="checkbox" id="Mexico" value="mexican" />
-
-                        <label for="Thailand"> <TH className='country-flag' /></label>
-                        <input type="checkbox" id="Thailand" value="thai" />
-
-                        <label for="Vietnam"> <VN className='country-flag' /></label>
-                        <input type="checkbox" id="Vietnam" value="vietnamese" />
-
-                        <br />
-                        <h3>Meal Type</h3>
-                        <label for="Breakfast"> Breakfast </label>
-                        <input type="checkbox" id="Breakfast" value="breakfast" />
-
-                        <label for="MainCourse"> Main course </label>
-                        <input type="checkbox" id="MainCourse" value="main+course" />
-
-                        <label for="Dessert"> Dessert </label>
-                        <input type="checkbox" id="Dessert" value="dessert" />
-
-                        <br />
-                        <h3>Diet</h3>
-                        <label for="Vegetarian"> <TbMeatOff /> </label>
-                        <input type="checkbox" id="Vegetarian" value="vegetarian" />
-
-                        <label for="Vegan"> <LuVegan /> </label>
-                        <input type="checkbox" id="Vegan" value="vegan" />
-
-                        <label for="GlutenFree"> <LuWheatOff /> </label>
-                        <input type="checkbox" id="GlutenFree" value="gluten+free" />
-
-                        <br />
-                        <br />
-                        <Link to='/logout'>
-                            <button className='logout-button'> <BiLogOut /> Logout </button>
-                        </Link>
-                    </form>
-
-                </div>
-            } */}

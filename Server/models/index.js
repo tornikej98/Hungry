@@ -1,8 +1,9 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 
 let connectDB = () => {
     mongoose.connect(
-        'mongodb://127.0.0.1:27017/solo-project', console.log('connected to mongo via mongoose')
+        process.env.CONNECTION_TO_DB, console.log('connected to mongo via mongoose')
     );
 };
 
