@@ -31,7 +31,6 @@ const Login = () => {
     return (
 
         <div className="login-page">
-            <h4>this is the login page</h4>
             <h1 className="title">Hungry</h1>
 
             <form className="login" onSubmit={handleSubmit}>
