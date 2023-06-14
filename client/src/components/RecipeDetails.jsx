@@ -44,7 +44,7 @@ function RecipeDetails({ recipe }) {
             })
 
             const jsonResponse = await response.json()
-            console.log(jsonResponse)
+
             if (response.ok) {
                 dispatch({ type: 'FAVE_RECIPE', payload: jsonResponse })
             }

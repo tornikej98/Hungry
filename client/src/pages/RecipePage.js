@@ -19,7 +19,7 @@ function RecipePage() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(comment)
+
         const addComment = async () => {
             try {
                 const response = await fetch(process.env.REACT_APP_DB_LINK + '/recipes/' + params.id + '/updatenote', {
@@ -32,9 +32,7 @@ function RecipePage() {
                     body: JSON.stringify(comment)
 
                 })
-                console.log(JSON.stringify(comment))
-                // const jsonResponse = await response.json()
-                // console.log(jsonResponse)
+
                 if (response.ok) {
                     dispatch({ type: 'ADD_NOTES', payload: comment })
                 }
