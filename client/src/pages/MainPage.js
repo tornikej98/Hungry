@@ -77,9 +77,9 @@ function MainPage() {
 
 
 
-        // const { id, title, image, cuisines, sourceUrl, summary, instructions, extendedIngredients } = randomRecipe.recipes[0]
-        // addLikedRecipe(({ id, title, image, cuisines, sourceUrl, summary, instructions, extendedIngredients }), user)
-        // fetchOnClick()
+        const { id, title, image, cuisines, sourceUrl, summary, instructions, extendedIngredients } = randomRecipe.recipes[0]
+        addLikedRecipe(({ id, title, image, cuisines, sourceUrl, summary, instructions, extendedIngredients }), user)
+        fetchOnClick()
 
 
     }
@@ -90,15 +90,15 @@ function MainPage() {
 
 
 
-        // const recipe = await fetchRecipeFromApi(stringTags)
+        const recipe = await fetchRecipeFromApi(stringTags)
 
-        // if (recipe.ok) {
-        //     setRandomRecipe(recipe)
-        //     setLoading(false)
+        if (recipe.ok) {
+            setRandomRecipe(recipe)
+            setLoading(false)
 
-        // } else {
-        //     console.log('error')
-        // }
+        } else {
+            console.log('error')
+        }
 
 
 
@@ -106,20 +106,20 @@ function MainPage() {
 
 
     useEffect(() => {
-        // const getRecipes = async () => {
-        //     const recipe = await fetchRecipeFromApi(stringTags)
+        const getRecipes = async () => {
+            const recipe = await fetchRecipeFromApi(stringTags)
 
-        //     if (recipe.ok) {
-        //         setRandomRecipe(recipe)
-        //         setLoading(false)
+            if (recipe.ok) {
+                setRandomRecipe(recipe)
+                setLoading(false)
 
-        //     } else {
-        //         console.log('error')
-        //     }
-        // }
+            } else {
+                console.log('error')
+            }
+        }
 
 
-        //     getRecipes()
+        getRecipes()
 
 
 

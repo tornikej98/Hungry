@@ -56,7 +56,6 @@ exports.favoriteRecipe = async (req, res) => {
 
     try {
         const recipe = await Recipe.findOneAndUpdate({ id: id }, [{ $set: { favorite: { $eq: [false, "$favorite"] } } }]);
-        console.log(recipe)
         res.status(200).json(recipe)
     } catch (err) {
         res.status(500).json(err)
@@ -69,7 +68,7 @@ exports.addComment = async (req, res) => {
 
     try {
         const recipe = await Recipe.findOneAndUpdate({ id: id }, { notes: req.body.notes });
-        console.log(recipe)
+
         res.status(200).json(recipe)
     } catch (err) {
         res.status(500).json(err)

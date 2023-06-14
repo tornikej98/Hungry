@@ -5,7 +5,6 @@ const SECRET_KEY = process.env.SECRET_KEY || 'password12345'
 const authMiddleware = async (req, res, next) => {
 
     const { authorization } = req.headers
-    console.log(authorization)
     if (!authorization) {
         return res.sendStatus(403)
     }
